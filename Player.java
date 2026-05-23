@@ -13,7 +13,13 @@ public class Player {
     
     public void movePiece(Square s1, Square s2){
         Piece toMove = s1.getPiece();
+        boolean legalMove = true;
+        
     }
 
+    private boolean checkLegality(Piece p) {
+        switch (p) {
+            case 'p
+    }
     
 }
