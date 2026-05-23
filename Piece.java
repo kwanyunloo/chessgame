@@ -6,5 +6,6 @@ public class Piece {
     
     public Piece(Player name) {
         p = name;
-    }
+    } 
+    //should we insert a move method here? I was thinkg we do it here and hten we override it in all of the classes  
 }
