@@ -11,8 +11,22 @@ public class Piece {
     abstract public void movePiece(Square s1, Square s2);
     //see if i did it right
 
-    public boolean checkLegality()
-    {
-        if (
+    private boolean checkPin(int diagonalsChecked, int rowsChecked)
+    {   
+        int diagonals = diagonalsChecked;
+        int rows = rowsChecked;
+        if (diagonalsChecked == 2 && rowsChecked == 2)
+        {
+            return false;
+        } else {
+            if (diagonals < 2)
+            {
+                if (diagonals == 0)
+                {
+                    while (Square s1
+                    
+            }
+            checkPin(diagonals, rows);
+        }
     }
 }
