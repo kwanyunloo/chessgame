@@ -13,4 +13,12 @@ public class Pawn extends Piece {
     public Pawn(Player name) {
         super(name);
     }
+
+    public void movePiece(Square s1, Square s2)
+    {
+        if (checkLegality() == true)
+        {
+               
+        }
+    }
 }
