@@ -3,7 +3,7 @@ package chess;
 public class Piece {
     
     Player p;
-    
+    boolean color;
     public Piece(Player name) {
         p = name;
     } 
