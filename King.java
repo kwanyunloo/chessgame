@@ -13,7 +13,7 @@ public class King extends Piece {
     public King(Player name) {
         super(name);
     }
-    public ArrayList<int[]> move(Square current, Square[][] board){
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board){
         ArrayList<int[]> toReturn = new ArrayList<>();
         if (current.x + 1 < 8){
             int[] toAdd = new int[2];
