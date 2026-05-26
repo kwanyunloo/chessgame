@@ -20,4 +20,9 @@ public class Board {
             board[6][i].addPiece((Piece) (new Pawn(p2)));
         }
     }
+    public boolean checkIfKingInCheck(){
+        for (int i = 0; i < board.length; i++){
+            for (int j  0)
+        }
+    }
 }
