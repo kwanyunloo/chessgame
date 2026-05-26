@@ -9,6 +9,8 @@ public class Square {
     
     private boolean hasPiece;
     private Piece p;
+    private int row;
+    private in col;
     
     //Creates a square with no pieces on it
     public Square(){
