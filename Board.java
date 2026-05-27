@@ -34,7 +34,7 @@ public class Board {
                         kingRowOfColor = i;
                         kingRowOfColor = j;
                     }
-                    placesOpposingPlayerCovers.add(toAdd);
+                    placesOpposingPlayerCovers.add(board[i][j].possibleMoves());
                 }
             }
         }
