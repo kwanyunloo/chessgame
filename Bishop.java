@@ -32,21 +32,18 @@ public class Bishop extends Piece {
             int newCol = current.getCol() + d[1];
 
             while (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
-                int[] toAdd = new int[2];
-                toAdd[0] = newRow;
-                toAdd[1] = newCol;
                 Square next = board[newRow][newCol];
-                if (next.hasPiece()){
-                    if (next.getPiece().getColor() == currentColor){
-                        possibleMoves.add(toAdd);
-                        break;
-                    }else{
-                        break;
+                
+                if (!next.hasPiece()) {
+                    moves.add(new int[]{newRow, newCol});
+                } else {
+                    
+                    if (next.getPiece().getColor() != this.getColor()) {
+                        moves.add(new int[]{newRow, newCol}); 
                     }
+                    break; 
                 }
-                
-                
-
+      
                 newRow += d[0];
                 newCol += d[1];
             }
