@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class Bishop extends Piece {
     
-    public Bishop(Player name) {
-        super(name);
+    public Bishop(boolean newColor) {
+        super(newColor);
     }
 
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
