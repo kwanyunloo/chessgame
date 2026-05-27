@@ -14,5 +14,5 @@ public class Pawn extends Piece {
         super(newColor);
     }
 
-    public ArrayList<int[]> possibleMoves
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board)
 }
