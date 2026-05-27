@@ -14,7 +14,7 @@ public class Bishop extends Piece {
         super(name);
     }
 
-    public ArrayList<int[]> move(Square current, Square[][] board) {
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
 
         ArrayList<int[]> moves = new ArrayList<>();
 
