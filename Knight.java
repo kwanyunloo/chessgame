@@ -22,38 +22,38 @@ public class Knight extends Piece {
         int col = current.getCol();
         if (row + 2 < 8 && col + 1 < 8){
             int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row+2;
+            toAdd[1] = col+1;
             possibleMoves.add(toAdd);
         }
         if (row + 1 < 8 && col + 2 < 8){
             int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row+1;
+            toAdd[1] = col+2;
             possibleMoves.add(toAdd);
         }
         if (row - 2 < 8 && col - 1 < 8){
             int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row-2;
+            toAdd[1] = col-1;
             possibleMoves.add(toAdd);
         }
         if (row - 1 < 8 && col - 2 < 8){
             int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row-1;
+            toAdd[1] = col-2;
             possibleMoves.add(toAdd);
         }
         if (row - 2 < 8 && col + 1 < 8){
             int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row-2;
+            toAdd[1] = col+1;
             possibleMoves.add(toAdd);
         }
         if (row + 1 < 8 && col - 2 < 8){
            int[] toAdd = new int[2];
-            toAdd[0] = row;
-            toAdd[1] = col;
+            toAdd[0] = row+1;
+            toAdd[1] = col-2;
             possibleMoves.add(toAdd); 
         }
 
