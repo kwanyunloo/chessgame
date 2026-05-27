@@ -1,14 +1,18 @@
 package chess;
 
-public class Piece {
-    
-    Player p;
-    boolean color;
+import java.util.ArrayList;
 
-    abstract public void movePiece(Square s1, Square s2);
-    
-    public boolean getColor(){
-        return color;
+public abstract class Piece {
+    // True for White, False for Black
+    protected boolean color;
+
+    public Piece(boolean newColor) {
+        color = newColor;
     }
-    
+
+    public boolean getColor() {
+        return this.isWhite;
+    }
+
+    public abstract ArrayList<int[]> possibleMoves(Square current, Square[][] board);
 }
