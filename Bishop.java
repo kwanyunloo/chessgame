@@ -33,12 +33,12 @@ public class Bishop extends Piece {
             while (newX >= 0 && newX < 8 &&
                    newY >= 0 && newY < 8) {
 
-                if (board[newX][newY].piece == null) {
+                if (board[newX][newY].getPiece == null) {
 
                     moves.add(new int[]{newX, newY});
                 }
 
-                else if (board[newX][newY].piece.owner != this.owner) {
+                else if (board[newX][newY].getPiece.getPlayer != this.getPlayer) {
 
                     moves.add(new int[]{newX, newY});
                     break;
