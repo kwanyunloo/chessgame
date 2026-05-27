@@ -27,6 +27,8 @@ public class Rook extends Piece {
             //right
         }
         for(int [] d: directions){
+                 int newRow = row + d[0];
+                int newCol = col + d[1];
   //the purpose of the while statement is to keep moving until the edge or you are blocked
                 while(newRow>=0&& newRow<8 && newCol>=0 && newCol<=8){
                     Square next=board[newRow][newCol]; //gets square on the chessboard at a specific position and stores it 
