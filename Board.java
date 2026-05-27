@@ -10,7 +10,7 @@ public class Board {
         {
             for (int j = 0; j < 8; j++)
             {
-                board[i][j] = new Square();
+                board[i][j] = new Square(i, j);
             }
         }
         
