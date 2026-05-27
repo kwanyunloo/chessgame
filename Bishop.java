@@ -30,28 +30,11 @@ public class Bishop extends Piece {
             int newRow = current.getRow() + d[0];
             int newCol = current.getCol() + d[1];
 
-            while (newRow >= 0 && newRow < 8 &&
-                   newCol >= 0 && newCol < 8) {
+            while (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
 
                 Square next = board[newRow][newCol];
 
-                // empty square
-                if (!next.hasPiece()) {
-
-                    moves.add(new int[]{newRow, newCol});
-                }
-
-                // enemy piece
-                else if (next.getPiece().owner != this.owner) {
-
-                    moves.add(new int[]{newRow, newCol});
-                    break;
-                }
-
-                // friendly piece
-                else {
-                    break;
-                }
+                
 
                 newRow += d[0];
                 newCol += d[1];
