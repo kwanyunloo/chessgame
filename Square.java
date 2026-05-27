@@ -10,11 +10,21 @@ public class Square {
     private boolean hasPiece;
     private Piece p;
     private int row;
-    private in col;
+    private int col;
     
     //Creates a square with no pieces on it
-    public Square(){
+    public Square(int x, int y){
         hasPiece = false;
+        row = x;
+        col = y;
+    }
+
+    public int getRow(){
+        return row;
+    }
+
+    public int getCol(){
+        return col;
     }
     
     public boolean hasPiece()
