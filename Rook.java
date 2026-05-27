@@ -11,8 +11,8 @@ package chess;
 import java.util.ArrayList;
 public class Rook extends Piece {
     
-    public Rook(Player name) {
-        super(name);
+    public Rook(boolean newColor) {
+        super(newColor);
     }
       public ArrayList<int[]> possibleMoves(Square current, Square[][] board){
         ArrayList<int[]> possibleMoves = new ArrayList<>();
