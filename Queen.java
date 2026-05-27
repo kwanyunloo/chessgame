@@ -33,7 +33,7 @@ public class Queen extends Piece {
                     
                     if (next.getPiece().getColor() != this.getColor()) {
                         moves.add(new int[]{newRow, newCol}); 
-                    }
+                    } 
                     break; 
                 }
       
