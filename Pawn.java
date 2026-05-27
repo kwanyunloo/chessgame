@@ -14,11 +14,5 @@ public class Pawn extends Piece {
         super(name);
     }
 
-    public void movePiece(Square s1, Square s2)
-    {
-        if (checkLegality() == true)
-        {
-               
-        }
-    }
+    public ArrayList<int[]> possibleMoves
 }
