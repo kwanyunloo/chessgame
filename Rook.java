@@ -13,5 +13,9 @@ public class Rook extends Piece {
     public Rook(Player name) {
         super(name);
     }
+      public ArrayList<int[]> possibleMoves(Square current, Square[][] board){
+        ArrayList<int[]> possibleMoves = new ArrayList<>();
+        int row = current.getRow();
+        int col = current.getCol();
     
 }
