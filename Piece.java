@@ -11,7 +11,7 @@ public abstract class Piece {
     }
 
     public boolean getColor() {
-        return this.isWhite;
+        return this.color;
     }
 
     public abstract ArrayList<int[]> possibleMoves(Square current, Square[][] board);
