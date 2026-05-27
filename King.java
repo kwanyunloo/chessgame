@@ -8,12 +8,15 @@ package chess;
  *
  * @author 4004960
  */
+
+import java.util.ArrayList;
+
 public class King extends Piece {
     
     public King(boolean newColor) {
         super(newColor);
     }
-    public ArrayList<int[]> move(Square current, Square[][] board) {
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
 
         ArrayList<int[]> moves = new ArrayList<>();
 
@@ -41,7 +44,7 @@ public class King extends Piece {
                     moves.add(new int[]{newX, newY});
                 }
 
-                else if (board[newX][newY].getPiece.getColor != this.getColor) {
+                else if (board[newX][newY].getPiece().getColor() != this.getColor()) {
 
                     moves.add(new int[]{newX, newY});
                 }
