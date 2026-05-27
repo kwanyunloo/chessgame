@@ -41,7 +41,7 @@ public class King extends Piece {
                     moves.add(new int[]{newX, newY});
                 }
 
-                else if (board[newX][newY].piece.owner != this.owner) {
+                else if (board[newX][newY].getPiece.getColor != this.getColor) {
 
                     moves.add(new int[]{newX, newY});
                 }
