@@ -8,13 +8,20 @@ package chess;
  *
  * @author 4004960
  */
-public class Chess {
+// This acts as the driver class for our program
+public class Chess{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args){
+        System.out.println("Hello");
+           board[3][3].addPiece(rook);
+
+        // get possible moves
+        ArrayList<int[]> moves =
+                rook.possibleMoves(board[3][3], board);
+
+        // print moves
+        for (int[] move : moves) {
+            System.out.println("(" + move[0] + ", " + move[1] + ")");
+        }
     }
-    
 }
