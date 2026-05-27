@@ -1,76 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package chess;
 
-/**
- *
- * @author 3017317
- */
+import java.util.ArrayList;
+
 public class Queen extends Piece {
     
     public Queen(boolean newColor) {
         super(newColor);
     }
-    public ArrayList<int[]> possibleMoves(Square square, Square[][] board){
+
+    @Override
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
         ArrayList<int[]> moves = new ArrayList<>();
-        int originalRow = square.getRow();
-        int originalCol = square.getCol();
-        // left moving 
-        for (int col = originalCol; i >= 0; i--){
-            if (board[originalRow][col].hasPiece()){
-                break;
-            }else{
-                int[] toAdd = new int[2];
-                toAdd[0] = originalRow;
-                toAdd[1] = col;
-                moves.add(toAdd);
-            }
-        }
-        // right moving
-        for (int col = originalCol; i < 8; i++){
-            if (board[originalRow][col].hasPiece()){
-                break;
-            }else{
-                int[] toAdd = new int[2];
-                toAdd[0] = originalRow;
-                toAdd[1] = col;
-                moves.add(toAdd);
-            }
-        }
+        int row = current.getRow();
+        int col = current.getCol();
+        
+        // 8 directions: 4 straight (Rook) + 4 diagonal (Bishop)
+        int[][] directions = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1},       // Rook moves
+            {-1, -1}, {-1, 1}, {1, -1}, {1, 1}      // Bishop moves
+        };
 
-        // above
-        for (int row = originalRow; i >= 0; i--){
-            if (board[row][col].hasPiece()){
-                break;
-            }else{
-                int[] toAdd = new int[2];
-                toAdd[0] = row;
-                toAdd[1] = originalCol;
-                moves.add(toAdd);
+        for (int[] d : directions) {
+            int newRow = row + d[0];
+            int newCol = col + d[1];
+
+            while (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
+                Square next = board[newRow][newCol];
+                
+                if (!next.hasPiece()) {
+                    moves.add(new int[]{newRow, newCol});
+                } else {
+                    
+                    if (next.getPiece().getColor() != this.getColor()) {
+                        moves.add(new int[]{newRow, newCol}); 
+                    }
+                    break; 
+                }
+      
+                newRow += d[0];
+                newCol += d[1];
             }
         }
-        // below
-        for (int row = originalRow; i < 8; i++){
-            if (board[row][col].hasPiece()){
-                break;
-            }else{
-                int[] toAdd = new int[2];
-                toAdd[0] = row;
-                toAdd[1] = originalCol;
-                moves.add(toAdd);
-            }
-        }
-        // upper right diagnal
-        for (int row = originalRow; i < 8; i++){
-            
-        }
-        // upper left diagnal
-
-        // lower right diagnal
-
-        // lower left diagnal
+        
+        return moves;
     }
-    
 }
