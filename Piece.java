@@ -10,7 +10,9 @@ public class Piece {
     //should we insert a move method here? I was thinkg we do it here and hten we override it in all of the classes  
     abstract public void movePiece(Square s1, Square s2);
     //see if i did it right
-
+    public boolean getColor(){
+        return color;
+    }
     private boolean checkPin(int diagonalsChecked, int rowsChecked)
     {   
         int diagonals = diagonalsChecked;
