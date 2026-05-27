@@ -6,7 +6,7 @@ package chess;
 
 /**
  *
- * @author 4004960
+ * @author 3017317
  */
 public class Queen extends Piece {
     
