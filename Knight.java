@@ -16,49 +16,29 @@ public class Knight extends Piece {
         super(newColor);
 
     }
-    public ArrayList<int[]> possibleMoves(Square current){
-        ArrayList<int[]> possibleMoves = new ArrayList<>();
-        int row = current.getRow();
-        int col = current.getCol();
-        if (row + 2 < 8 && col + 1 < 8){
-            int[] toAdd = new int[2];
-            toAdd[0] = row+2;
-            toAdd[1] = col+1;
-            possibleMoves.add(toAdd);
-        }
-        if (row + 1 < 8 && col + 2 < 8){
-            int[] toAdd = new int[2];
-            toAdd[0] = row+1;
-            toAdd[1] = col+2;
-            possibleMoves.add(toAdd);
-        }
-        if (row - 2 < 8 && col - 1 < 8){
-            int[] toAdd = new int[2];
-            toAdd[0] = row-2;
-            toAdd[1] = col-1;
-            possibleMoves.add(toAdd);
-        }
-        if (row - 1 < 8 && col - 2 < 8){
-            int[] toAdd = new int[2];
-            toAdd[0] = row-1;
-            toAdd[1] = col-2;
-            possibleMoves.add(toAdd);
-        }
-        if (row - 2 < 8 && col + 1 < 8){
-            int[] toAdd = new int[2];
-            toAdd[0] = row-2;
-            toAdd[1] = col+1;
-            possibleMoves.add(toAdd);
-        }
-        if (row + 1 < 8 && col - 2 < 8){
-           int[] toAdd = new int[2];
-            toAdd[0] = row+1;
-            toAdd[1] = col-2;
-            possibleMoves.add(toAdd); 
+    public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
+        ArrayList<int[]> moves = new ArrayList<>();
+        
+        // 8 possible knight moves
+        int[][] knightMoves = {
+            {2, 1}, {2, -1}, {-2, 1}, {-2, -1},
+            {1, 2}, {1, -2}, {-1, 2}, {-1, -2}
+        };
+
+        for (int[] m : knightMoves) {
+            int newRow = current.getRow() + m[0];
+            int newCol = current.getCol() + m[1];
+
+            if (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
+                Square next = board[newRow][newCol];
+                
+                if (!next.hasPiece() || next.getPiece().getColor() != this.getColor()) {
+                    moves.add(new int[]{newRow, newCol});
+                }
+            }
         }
 
-
-        return possibleMoves;
+        return moves;
     }
     
 }
