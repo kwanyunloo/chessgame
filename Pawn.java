@@ -10,8 +10,8 @@ package chess;
  */
 public class Pawn extends Piece {
     
-    public Pawn(Player name) {
-        super(name);
+    public Pawn(boolean newColor) {
+        super(newColor);
     }
 
     public ArrayList<int[]> possibleMoves
