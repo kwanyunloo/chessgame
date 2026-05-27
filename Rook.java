@@ -23,8 +23,7 @@ public class Rook extends Piece {
             {-1,0},   //up
             {1,0},    //down
             {0,-1},   //left
-            {0,1},
-            //right
+            {0,1},    //right
         }
         for(int [] d: directions){
                  int newRow = row + d[0];
@@ -36,6 +35,7 @@ public class Rook extends Piece {
                         moves.add(new int[]{newRow,newCol};
                     }else{
                         // if enemy piece, you can capture
+                        
                         if(next.getPiece()getColor()!= this.getColor()){
                             moves.add(new int[]{newRow, newCol}); //record coordinate as legal move for this piece
                         }
