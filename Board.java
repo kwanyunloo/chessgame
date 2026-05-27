@@ -5,7 +5,7 @@ public class Board {
     private Square[][] board = new Square[8][8];
     
     // Initializes the starting board position
-    public Board(Player p1, Player p2){
+    public Board(){
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
