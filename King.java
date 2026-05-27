@@ -30,13 +30,13 @@ public class King extends Piece {
 
         for (int[] d : directions) {
 
-            int newX = current.x + d[0];
-            int newY = current.y + d[1];
+            int newX = current.getRow() + d[0];
+            int newY = current.getCol() + d[1];
 
             if (newX >= 0 && newX < 8 &&
                 newY >= 0 && newY < 8) {
 
-                if (board[newX][newY].piece == null) {
+                if (board[newX][newY].getPiece() == null) {
 
                     moves.add(new int[]{newX, newY});
                 }
