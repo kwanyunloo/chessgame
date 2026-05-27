@@ -10,8 +10,8 @@ package chess;
  */
 public class Queen extends Piece {
     
-    public Queen(Player name) {
-        super(name);
+    public Queen(boolean newColor) {
+        super(newColor);
     }
     public ArrayList<int[]> possibleMoves(Square square, Square[][] board){
         ArrayList<int[]> moves = new ArrayList<>();
