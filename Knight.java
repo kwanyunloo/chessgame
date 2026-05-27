@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class Knight extends Piece {
     
-    public Knight(Player name) {
-        super(name);
+    public Knight(boolean newColor) {
+        super(newColor);
 
     }
     public ArrayList<int[]> possibleMoves(Square current){
