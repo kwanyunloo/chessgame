@@ -38,6 +38,7 @@ public class Square {
     }
     
     public void setEmpty(){
+        p = null;
         hasPiece = false;
     }
     
