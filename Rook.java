@@ -6,8 +6,9 @@ package chess;
 
 /**
  *
- * @author 4004960
+ * @author 3017317
  */
+import java.util.ArrayList;
 public class Rook extends Piece {
     
     public Rook(Player name) {
