@@ -3,10 +3,8 @@ package chess;
 public class Piece {
     
     Player p;
-    boolean color;
-    public Piece(Player name) {
-        p = name;
-    } 
+    boolean isWhite;
+
     //should we insert a move method here? I was thinkg we do it here and hten we override it in all of the classes  
     abstract public void movePiece(Square s1, Square s2);
     //see if i did it right
