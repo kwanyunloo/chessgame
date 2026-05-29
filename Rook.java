@@ -3,7 +3,7 @@ package chess;
 import java.util.ArrayList;
 // I used ai in this code for formatting to format it because all the formatting was off.
 public class Rook extends Piece {
-    boolean hasMoved();
+    boolean hasMoved() = false;
     
     public Rook(boolean newColor) {
         super(newColor);
