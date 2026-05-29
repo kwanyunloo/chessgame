@@ -61,7 +61,24 @@ public class Pawn extends Piece {
                         moves.add(new int[]{nextRow, nextCol});
                     }
                 }
-            }
+        }
+        //en passant
+        if (nextRow >= 0 && nextRow < 8) {
+                if (col1 >= 0 && col1 < 8){
+                    Square targetSquare = board[nextRow][col1];
+                    Square adjSquare = board[row][col1];
+                    if (!targetSquare.hasPiece() && adjSquare.hasPiece() && adjSquare.getPiece()) {
+                        moves.add(new int[]{nextRow, nextCol});
+                    }
+                }
+                if (col1 >= 0 && col1 < 8){
+                    Square targetSquare = board[nextRow][col2];
+                    Square adjSquare = board[row][col2];
+                    if (!targetSquare.hasPiece() && adjSquare.hasPiece() && adjSquare.getPiece() ) {
+                        moves.add(new int[]{nextRow, nextCol});
+                    }
+                }
+        }
     }
 
     public void setHasMoved(boolean b) {
