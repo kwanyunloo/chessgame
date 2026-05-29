@@ -46,38 +46,31 @@ public class Pawn extends Piece {
         }
 
         //diagonal capturing
-        int col1 = col + 1;
-        int col2 = col - 1;
+        int[] cols = {col + 1, col - 1};
         if (nextRow >= 0 && nextRow < 8) {
-                if (col1 >= 0 && col1 < 8){
+            for (int c: cols){
+                if (c >= 0 && c < 8){
                     Square targetSquare = board[nextRow][col1];
                     if (targetSquare.hasPiece() && targetSquare.getPiece().getColor() != this.getColor()) {
                         moves.add(new int[]{nextRow, nextCol});
                     }
                 }
-                if (col1 >= 0 && col1 < 8){
-                    Square targetSquare = board[nextRow][col2];
-                    if (targetSquare.hasPiece() && targetSquare.getPiece().getColor() != this.getColor()) {
-                        moves.add(new int[]{nextRow, nextCol});
-                    }
-                }
+            }
         }
         //en passant
         if (nextRow >= 0 && nextRow < 8) {
-                if (col1 >= 0 && col1 < 8){
-                    Square targetSquare = board[nextRow][col1];
-                    Square adjSquare = board[row][col1];
-                    if (!targetSquare.hasPiece() && adjSquare.hasPiece() && adjSquare.getPiece()) {
-                        moves.add(new int[]{nextRow, nextCol});
+            for (int c: cols){
+                if (c >= 0 && c < 8){
+                    Square targetSquare = board[nextRow][c];
+                    Square adjSquare = board[row][c];
+                    if (adjSquare.hasPiece()){
+                        adjPiece = adjSquare.getPiece();
+                        if (!targetSquare.hasPiece() && adjPiece() == Pawn && adjPiece.getColor() != this.getColor() && adjPiece.justMovedTwo()) {
+                            moves.add(new int[]{nextRow, c});
+                        }
                     }
                 }
-                if (col1 >= 0 && col1 < 8){
-                    Square targetSquare = board[nextRow][col2];
-                    Square adjSquare = board[row][col2];
-                    if (!targetSquare.hasPiece() && adjSquare.hasPiece() && adjSquare.getPiece() ) {
-                        moves.add(new int[]{nextRow, nextCol});
-                    }
-                }
+            }
         }
     }
 
