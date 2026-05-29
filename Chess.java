@@ -28,7 +28,9 @@ public class Chess{
             int startCol = start.charAt(0) - '0';
             int endRow = start.charAt(0) - 'a';
             int endCol = start.charAt(0) - '0';
-            board.move(startinRow, startingCol, endingRow, endingCol);
+            if (board.move(startinRow, startingCol, endingRow, endingCol)){
+                board.changeMove();
+            }
             System.out.println(board); // make sure to make a toString method that prints it out correctly (rotate it)
         }
     }
