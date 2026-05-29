@@ -65,32 +65,34 @@ public class Board {
         }
     }
     
-    public boolean checkIfKingInCheck(boolean color){
-        int kingRowOfColor = -1;
-        int kingColOfColor = -1;
-        ArrayList<int[]> placesOpposingPlayerCovers = new ArrayList<>();
-        for (int i = 0; i < board.length; i++){
-            for (int j = 0; j < board[0].length; j++){
-                if (!board[i][j].empty){
-                    int[] toAdd = new int[2];
-                    toAdd[0] = i;
-                    toAdd[1] = j;
-                    if (board[i][j].getPiece().getColor()){
-                        kingRowOfColor = i;
-                        kingColOfColor = j;
+    public boolean isSquareAttacked(int targetRow, int targetCol, boolean defendingColor) {
+        //scan the entire board
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Square currentSquare = board[i][j];
+
+                // look for squares that have pieces belonging to opponent
+                if (currentSquare.hasPiece() && currentSquare.getPiece().getColor() != defendingColor) {
+                    Piece enemyPiece = currentSquare.getPiece();
+
+                    // get all the possible moves of that piece
+                    ArrayList<int[]> enemyMoves = enemyPiece.possibleMoves(currentSquare, board);
+
+                    // check if those moves attack this square
+                    for (int[] move : enemyMoves) {
+                        if (move[0] == targetRow && move[1] == targetCol) {
+                            return true; 
+                        }
                     }
-                    placesOpposingPlayerCovers.add(board[i][j].possibleMoves());
                 }
             }
         }
-        for (int[] arr : placesOpposingPlayerCovers){
-            if (arr[0] == kingRowOfColor && arr[1] == kingColOfColor){
-                return true;
-            }
-        }
-        return false;
         
+        // checked all pieces and none hit this square
+        return false; 
     }
+
+    
     public String toString(){
         for (int row = 7; row >= 0; i--){ // print in opposite direction because board is 0 based from the bottom left corner
             for (int col = 0; col < 8; col++){
