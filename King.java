@@ -12,6 +12,7 @@ package chess;
 import java.util.ArrayList;
 
 public class King extends Piece {
+    boolean hasMoved = false;
     
     public King(boolean newColor) {
         super(newColor);
