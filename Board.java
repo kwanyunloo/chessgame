@@ -4,17 +4,18 @@ public class Board {
     
     private Square[][] board = new Square[8][8];
     // TODO: Make moves
-    public void (int startRow, int startCol, int endRow, int endCol){
+    public boolean (int startRow, int startCol, int endRow, int endCol){
         Piece piece = board[startRow][startCol];
         ArrayList<int[]> possibleMoves = new ArrayList<>();
         for (int[] possibleMove : possibleMoves){
             if (possibleMove[0] == endRow && possibleMove[1] == endCol){
                 board[startRow][startCol].addPiece(board[startRow][startCol].getPiece());
                 board[startRow][startCol] = new Square(i,j);
-                return;
+                return true;
             }
         }
         System.out.println("This is not a valid move.");
+        return false;
     }
     public Board(){
          for (int i = 0; i < 8; i++) {
