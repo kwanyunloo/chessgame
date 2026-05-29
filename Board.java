@@ -4,9 +4,17 @@ public class Board {
     
     private Square[][] board = new Square[8][8];
     // TODO: Make moves
-    public void move(int startRow, int startCol, int endRow, int endCol){
-        // need to check what piece is at start row start col and if it can move to the end row end col or not
-        // If not, then send a message to the user that this move is illegal
+    public void (int startRow, int startCol, int endRow, int endCol){
+        Piece piece = board[startRow][startCol];
+        ArrayList<int[]> possibleMoves = new ArrayList<>();
+        for (int[] possibleMove : possibleMoves){
+            if (possibleMove[0] == endRow && possibleMove[1] == endCol){
+                board[startRow][startCol].addPiece(board[startRow][startCol].getPiece());
+                board[startRow][startCol] = new Square(i,j);
+                return;
+            }
+        }
+        System.out.println("This is not a valid move.");
     }
     public Board(){
          for (int i = 0; i < 8; i++) {
