@@ -11,7 +11,7 @@ public class Bishop extends Piece {
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
         ArrayList<int[]> moves = new ArrayList<>();
         boolean currentColor = current.getPiece().getColor();
-        int[][] directions = {
+        int[][] directions = { // used ai to figure out how to implement the directions
             {-1, -1},
             {-1, 1},
             {1, -1},
