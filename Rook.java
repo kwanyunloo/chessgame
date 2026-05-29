@@ -10,6 +10,7 @@ package chess;
  */
 import java.util.ArrayList;
 public class Rook extends Piece {
+    boolean hasMoved();
     
     public Rook(boolean newColor) {
         super(newColor);
