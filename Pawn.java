@@ -9,7 +9,7 @@ public class Pawn extends Piece {
     public Pawn(boolean newColor) {
         super(newColor);
     }
-
+    @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board)
     {
         int[][] directions;
