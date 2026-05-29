@@ -92,6 +92,27 @@ public class Board {
         return false; 
     }
 
+    public boolean isKingInCheck(boolean kingColor) {
+        int kingRow = -1;
+        int kingCol = -1;
+        //find the king's coordinates
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j].hasPiece()) {
+                    Piece p = board[i][j].getPiece();
+                    if (p instanceof King && p.getColor() == kingColor) {
+                        kingRow = i;
+                        kingCol = j;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        //if the king's square is being attacked, it is in check
+        return isSquareAttacked(kingRow, kingCol, kingColor);
+    }
+
     
     public String toString(){
         for (int row = 7; row >= 0; i--){ // print in opposite direction because board is 0 based from the bottom left corner
