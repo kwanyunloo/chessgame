@@ -38,6 +38,21 @@ public class Board {
                 if (piece instanceof Pawn || piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
                 }
+
+                //check for en passant or pawn double move
+                if (pieceToMove instanceof Pawn) {
+                    Pawn movedPawn = (Pawn) pieceToMove;
+                    
+                    //check for en passant - pawn moves diagonal but capture square is empty
+                    if (startCol != endCol && capturedPiece == null) {
+                        board[startRow][endCol].setEmpty(); //deletes the captured pawn 
+                    }
+                    
+                    //check if pawn double move
+                    if (Math.abs(startRow - endRow) == 2) {
+                        movedPawn.setJustMovedTwo(true);
+                    }
+                }
                 
                 return true;
             }
@@ -47,7 +62,19 @@ public class Board {
     }
     public void changeMove(){
         currentTurn = !currentTurn;
+        //reset en passant
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j].hasPiece()) {
+                    Piece p = board[i][j].getPiece();
+                    if (p instanceof Pawn && p.getColor() == currentTurn) {
+                        ((Pawn) p).setJustMovedTwo(false);
+                    }
+                }
+            }
+        }
     }
+    
     public Board(){
         currentTurn = true;
          for (int i = 0; i < 8; i++) {
