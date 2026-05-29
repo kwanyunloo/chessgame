@@ -4,17 +4,23 @@ public class Board {
     
     private Square[][] board = new Square[8][8];
     private boolean currentTurn;
-    public boolean (int startRow, int startCol, int endRow, int endCol){
+    public boolean move(int startRow, int startCol, int endRow, int endCol){
         if (piece[startRow][startCol].getColor() != currentTurn){ // someone trying to move an opposing player's piece
             System.out.println("This is not a valid move.");
             return false;
         }
         Piece piece = board[startRow][startCol];
-        ArrayList<int[]> possibleMoves = new ArrayList<>();
+        ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);
         for (int[] possibleMove : possibleMoves){
             if (possibleMove[0] == endRow && possibleMove[1] == endCol){
-                board[startRow][startCol].addPiece(board[startRow][startCol].getPiece());
-                board[startRow][startCol] = new Square(i,j);
+                //execute move
+                board[endRow][endCol].addPiece(piece);
+                board[startRow][startCol].setEmpty();
+
+                if (piece instanceof Rook || piece instanceof King){
+                    piece.setHasMoved(true);
+                }
+                
                 return true;
             }
         }
