@@ -1,7 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
-
+// I used ai in this code for formatting to format it because all the formatting was off.
 public class Rook extends Piece {
     boolean hasMoved();
     
@@ -32,7 +32,9 @@ public class Rook extends Piece {
                         // if enemy piece, you can capture
                         
                         if (next.getPiece().getColor() != this.getColor()){
-                            moves.add(new int[]{newRow, newCol}); // record coordinate as legal move for this piece
+                            moves.add(new int[]{newRow, newCol}); // record coordinate as legal move for this piece. 
+                            //I used ai to store it because i did not know how to store the captures as possible moves. 
+                            //As I did not know if they should be in the same ArrayLiist or not.
                         }
                         //stop scanning in this direction
                         break;
