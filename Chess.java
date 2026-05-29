@@ -22,10 +22,12 @@ public class Chess{
             }else{
                 System.out.println("Black to move. Enter the starting square and ending square.");
             }
-            int startingRow = in.nextInt();
-            int startingCol = in.nextInt();
-            int endingRow = in.nextInt();
-            int endingCol = in.nextInt();
+            String start = in.next();
+            String end = in.next();
+            int startRow = start.charAt(0) - 'a';
+            int startCol = start.charAt(0) - '0';
+            int endRow = start.charAt(0) - 'a';
+            int endCol = start.charAt(0) - '0';
             board.move(startinRow, startingCol, endingRow, endingCol);
             System.out.println(board); // make sure to make a toString method that prints it out correctly (rotate it)
         }
