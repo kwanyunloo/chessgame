@@ -8,6 +8,7 @@ public class King extends Piece {
     public King(boolean newColor) {
         super(newColor);
     }
+    @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
 
         ArrayList<int[]> moves = new ArrayList<>();
