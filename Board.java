@@ -31,6 +31,7 @@ public class Board {
                 board[i][j] = new Square(i, j);
             }
         }
+        // Used AI to load original position
         board[0][0].addPiece(new Rook(true));
         board[0][1].addPiece(new Knight(true));
         board[0][2].addPiece(new Bishop(true));
@@ -83,5 +84,25 @@ public class Board {
         }
         return false;
         
+    }
+    public String toString(){
+        for (int row = 7; row >= 0; i--){ // print in opposite direction because board is 0 based from the bottom left corner
+            for (int col = 0; col < 8; col++){
+                if (board[row][col] instanceOf King){
+                    System.out.print("K ");
+                }else if (board[row][col] instanceOf Bishop){
+                    System.out.print("B ");
+                }else if (board[row][col] instanceOf Pawn){
+                    System.out.print("P ");
+                }else if (board[row][col] instanceOf Queen){
+                    System.out.print("Q ");
+                }else if (board[row][col] instanceOf Rook){
+                    System.out.print("R ");
+                }else if (board[row][col] instanceOf Knight){
+                    System.out.print("N ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
