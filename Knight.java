@@ -8,6 +8,7 @@ public class Knight extends Piece {
         super(newColor);
 
     }
+    @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
         ArrayList<int[]> moves = new ArrayList<>();
         
