@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.Scanner;
+
 // This acts as the driver class for our program
 public class Chess{
 
@@ -20,7 +22,7 @@ public class Chess{
             int startCol = start.charAt(0) - '0';
             int endRow = start.charAt(0) - 'a';
             int endCol = start.charAt(0) - '0';
-            if (board.move(startinRow, startingCol, endingRow, endingCol)){
+            if (board.move(startingRow, startingCol, endingRow, endingCol)){
                 board.changeMove();
             }
             System.out.println(board); // make sure to make a toString method that prints it out correctly (rotate it)
