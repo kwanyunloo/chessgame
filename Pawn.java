@@ -40,7 +40,6 @@ public class Pawn extends Piece {
                     Square doubleForwardSquare = board[doubleRow][col];
                     if (!doubleForwardSquare.hasPiece()) {
                         moves.add(new int[]{doubleRow, col});
-                        justMovedTwo = true;
                     }
                 }
         }
