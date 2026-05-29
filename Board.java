@@ -3,8 +3,12 @@ package chess;
 public class Board {
     
     private Square[][] board = new Square[8][8];
-    // TODO: Make moves
+    private boolean currentTurn;
     public boolean (int startRow, int startCol, int endRow, int endCol){
+        if (piece[startRow][startCol] != currentTurn){ // someone trying to move an opposing player's piece
+            System.out.println("This is not a valid move.");
+            return false;
+        }
         Piece piece = board[startRow][startCol];
         ArrayList<int[]> possibleMoves = new ArrayList<>();
         for (int[] possibleMove : possibleMoves){
@@ -17,7 +21,11 @@ public class Board {
         System.out.println("This is not a valid move.");
         return false;
     }
+    public void changeMove(){
+        currentTurn = !currentTurn;
+    }
     public Board(){
+        currentTurn = true;
          for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new Square(i, j);
