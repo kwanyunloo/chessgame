@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Bishop extends Piece {
     
-    public Bishop(Player name) {
+    public Bishop(boolean newColor) {
         super(name);
     }
     @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
-        ArrayList<int[]> possibleMoves = new ArrayList<>();
+        ArrayList<int[]> moves = new ArrayList<>();
         boolean currentColor = current.getPiece().getColor();
         int[][] directions = {
             {-1, -1},
