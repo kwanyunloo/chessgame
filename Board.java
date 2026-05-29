@@ -5,7 +5,7 @@ public class Board {
     private Square[][] board = new Square[8][8];
     private boolean currentTurn;
     public boolean (int startRow, int startCol, int endRow, int endCol){
-        if (piece[startRow][startCol] != currentTurn){ // someone trying to move an opposing player's piece
+        if (piece[startRow][startCol].getColor() != currentTurn){ // someone trying to move an opposing player's piece
             System.out.println("This is not a valid move.");
             return false;
         }
