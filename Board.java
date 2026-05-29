@@ -35,7 +35,7 @@ public class Board {
                     return false;
                 }
 
-                if (piece instanceof Rook || piece instanceof King){
+                if (piece instanceof Pawn || piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
                 }
                 
