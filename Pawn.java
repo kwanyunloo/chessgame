@@ -29,7 +29,7 @@ public class Pawn extends Piece {
         int nextRow = row + direction;
         if (nextRow >= 0 && nextRow < 8){
             //forward 1 square
-            Square forwardSquare = board[nextRow][col]
+            Square forwardSquare = board[nextRow][col];
             if (!forwardSquare.hasPiece()){
                 moves.add(new int[]{nextRow, col});
             }
@@ -50,9 +50,9 @@ public class Pawn extends Piece {
         if (nextRow >= 0 && nextRow < 8) {
             for (int c: cols){
                 if (c >= 0 && c < 8){
-                    Square targetSquare = board[nextRow][col1];
+                    Square targetSquare = board[nextRow][c];
                     if (targetSquare.hasPiece() && targetSquare.getPiece().getColor() != this.getColor()) {
-                        moves.add(new int[]{nextRow, nextCol});
+                        moves.add(new int[]{nextRow, c});
                     }
                 }
             }
@@ -65,8 +65,10 @@ public class Pawn extends Piece {
                     Square adjSquare = board[row][c];
                     if (adjSquare.hasPiece()){
                         adjPiece = adjSquare.getPiece();
-                        if (!targetSquare.hasPiece() && adjPiece() == Pawn && adjPiece.getColor() != this.getColor() && adjPiece.justMovedTwo()) {
-                            moves.add(new int[]{nextRow, c});
+                        if (!targetSquare.hasPiece() && adjPiece instanceof Pawn && adjPiece.getColor() != this.getColor()) {
+                            if ((Pawn) adjPiece).justMovedTwo()){
+                                moves.add(new int[]{nextRow, c});
+                            }
                         }
                     }
                 }
