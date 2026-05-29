@@ -6,16 +6,34 @@ public class Board {
     private boolean currentTurn;
     public boolean move(int startRow, int startCol, int endRow, int endCol){
         if (piece[startRow][startCol].getColor() != currentTurn){ // someone trying to move an opposing player's piece
-            System.out.println("This is not a valid move.");
+            System.out.println("Invalid Move: This is not your piece");
             return false;
         }
         Piece piece = board[startRow][startCol];
         ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);
         for (int[] possibleMove : possibleMoves){
             if (possibleMove[0] == endRow && possibleMove[1] == endCol){
-                //execute move
+                //save piece on end square in case of capture
+                Piece capturedPiece = null;
+                if (board[endRow][endCol].hasPiece()) {
+                    capturedPiece = board[endRow][endCol].getPiece();
+                }
+                //temporarily execute move first
                 board[endRow][endCol].addPiece(piece);
                 board[startRow][startCol].setEmpty();
+
+                if (isKingInCheck(currentTurn)){ //illegal move - undo move
+                    board[startRow][startCol].addPiece(pieceToMove);
+                    
+                    if (capturedPiece != null) {
+                        board[endRow][endCol].addPiece(capturedPiece); 
+                    } else {
+                        board[endRow][endCol].setEmpty(); 
+                    }
+                    
+                    System.out.println("Invalid move: This move will leave your king in check");
+                    return false;
+                }
 
                 if (piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
