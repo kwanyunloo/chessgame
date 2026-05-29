@@ -77,7 +77,7 @@ public class Board {
                     toAdd[1] = j;
                     if (board[i][j].getPiece().getColor()){
                         kingRowOfColor = i;
-                        kingRowOfColor = j;
+                        kingColOfColor = j;
                     }
                     placesOpposingPlayerCovers.add(board[i][j].possibleMoves());
                 }
@@ -94,19 +94,32 @@ public class Board {
     public String toString(){
         for (int row = 7; row >= 0; i--){ // print in opposite direction because board is 0 based from the bottom left corner
             for (int col = 0; col < 8; col++){
-                if (board[row][col] instanceOf King){
-                    System.out.print("K ");
-                }else if (board[row][col] instanceOf Bishop){
-                    System.out.print("B ");
-                }else if (board[row][col] instanceOf Pawn){
-                    System.out.print("P ");
-                }else if (board[row][col] instanceOf Queen){
-                    System.out.print("Q ");
-                }else if (board[row][col] instanceOf Rook){
-                    System.out.print("R ");
-                }else if (board[row][col] instanceOf Knight){
-                    System.out.print("N ");
+                if (!board[row][col].hasPiece()){
+                    System.out.println(". ");
                 }
+                else {
+                    //WE NEED TO DIFFERENTIATE BETWEEN WHITE AND BLACK PIECE - maybe uppercase for white, lowercase for black?
+                    Piece p = board[row][col].getPiece();
+                    if (board[row][col] instanceOf King){
+                        System.out.print("K ");
+                    }
+                    else if (board[row][col] instanceOf Bishop){
+                        System.out.print("B ");
+                    }
+                    else if (board[row][col] instanceOf Pawn){
+                        System.out.print("P ");
+                    }
+                    else if (board[row][col] instanceOf Queen){
+                        System.out.print("Q ");
+                    }
+                    else if (board[row][col] instanceOf Rook){
+                        System.out.print("R ");
+                    }
+                    else if (board[row][col] instanceOf Knight){
+                        System.out.print("N ");
+                    }
+                }
+                
             }
             System.out.println();
         }
