@@ -39,7 +39,7 @@ public class Rook extends Piece {
                         //stop scanning in this direction
                         break;
                 
-            }    
+            }    //used ai for the below two lines because I did not know how to actually move the rook to other positions
                     newRow += d[0];
                     newCol += d[1];
       }
