@@ -15,7 +15,7 @@ public class Bishop extends Piece {
     public Bishop(Player name) {
         super(name);
     }
-
+    @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
         ArrayList<int[]> possibleMoves = new ArrayList<>();
         boolean currentColor = current.getPiece().getColor();
