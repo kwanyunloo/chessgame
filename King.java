@@ -44,7 +44,39 @@ public class King extends Piece {
             }
         }
 
+
+        //castling
+        if (!hasMoved) {
+            // kingside castle - move to column 6
+            if (!board[row][5].hasPiece() && !board[row][6].hasPiece()) {
+                if (board[row][7].hasPiece()) {
+                    Piece p = board[row][7].getPiece();
+                    if (p instanceof Rook && !((Rook) p).getHasMoved()) {
+                        moves.add(new int[]{row, 6});
+                    }
+                }
+            }
+            
+            // queenside castle - move to column 2
+            if (!board[row][1].hasPiece() && !board[row][2].hasPiece() && !board[row][3].hasPiece()) {
+                if (board[row][0].hasPiece()) {
+                    Piece p = board[row][0].getPiece();
+                    if (p instanceof Rook && !((Rook) p).getHasMoved()) {
+                        moves.add(new int[]{row, 2});
+                    }
+                }
+            }
+        }
+
         return moves;
+    }
+
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean b) {
+        hasMoved = b;
     }
     
 }
