@@ -34,7 +34,7 @@ public class Rook extends Piece {
                         if (next.getPiece().getColor() != this.getColor()){
                             moves.add(new int[]{newRow, newCol}); // record coordinate as legal move for this piece. 
                             //I used ai to store it because i did not know how to store the captures as possible moves. 
-                            //As I did not know if they should be in the same ArrayLiist or not.
+                            //As I did not know if they should be in the same ArrayList or not.
                         }
                         //stop scanning in this direction
                         break;
