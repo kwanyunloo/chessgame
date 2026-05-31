@@ -1,9 +1,8 @@
 package chess;
-
+// used AI to fix small errors
 import java.util.ArrayList;
 
 public class King extends Piece {
-    boolean hasMoved = false;
     
     public King(boolean newColor) {
         super(newColor);
@@ -12,6 +11,7 @@ public class King extends Piece {
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
 
         ArrayList<int[]> moves = new ArrayList<>();
+        int row = current.getRow();
 
         int[][] directions = {
             {-1, -1},
