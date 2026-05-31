@@ -1,4 +1,3 @@
-package chess;
 
 import java.util.ArrayList;
 // used AI to fix small errors
