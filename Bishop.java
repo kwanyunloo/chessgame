@@ -1,11 +1,11 @@
 package chess;
 
 import java.util.ArrayList;
-
+// used AI to fix small errors
 public class Bishop extends Piece {
     
     public Bishop(boolean newColor) {
-        super(name);
+        super(newColor);
     }
     @Override
     public ArrayList<int[]> possibleMoves(Square current, Square[][] board) {
@@ -40,6 +40,6 @@ public class Bishop extends Piece {
                 newCol += d[1];
             }
         }
-        return possibleMoves;
-    
+        return moves;
+    }
 }
