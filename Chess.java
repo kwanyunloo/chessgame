@@ -1,5 +1,5 @@
-
 // used ai to fix small errors
+
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -11,7 +11,7 @@ public class Chess{
         Scanner in = new Scanner(System.in);
         Board board = new Board();
         Stack<Board> boardPositions = new Stack<>();
-        boardPositions.add(board);
+        boardPositions.add(new Board(board));
         Stack<Board> storedMoves = new Stack<>();
         while (!board.isGameOver()){
             
@@ -36,7 +36,7 @@ public class Chess{
                         boardPositions.add(storedMoves.pop());
                     }
                 }
-                board = boardPositions.peek();
+                board = new Board(boardPositions.peek());
                 start = in.next();
                 System.out.println(board);
             }
