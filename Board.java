@@ -47,7 +47,10 @@ public class Board {
                 if (piece instanceof Pawn || piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
                 }
-
+                // Handles promotion to queen
+                if (piece instanceof Pawn && (endRow == 0 || endRow == 7){
+                    board[endRow][endCol].addPiece(new Queen(piece.getColor()));
+                }
                 //if the king moved two squares it castled - move the rook too
                 if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
                     if (endCol == 6) {
@@ -280,7 +283,39 @@ public class Board {
         return currentTurn;
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver(){ return !hasAnyLegalMove(currentTurn); }
+    public boolean isCheckmate(boolean color){ return isKingInCheck(color) && !hasAnyLegalMove(color); }
+    public boolean isStalemate(boolean color){ return !isKingInCheck(color) && !hasAnyLegalMove(color); }
+
+    //true if color has a move that doesn't leave its own king in check
+    public boolean hasAnyLegalMove(boolean color){
+    for (int i = 0; i < 8; i++)
+        for (int j = 0; j < 8; j++) {
+            Square from = board[i][j];
+            if (!from.hasPiece() || from.getPiece().getColor() != color) {
+                continue;
+            }
+            Piece piece = from.getPiece();
+            for (int[] m : piece.possibleMoves(from, board)) {
+                if (piece instanceof King && Math.abs(m[1] - j) == 2) {
+                    continue; //castling can't be the only escape
+                }
+                Square to = board[m[0]][m[1]];
+                Piece captured = to.getPiece();   //null if the square is empty
+                to.addPiece(piece);
+                from.setEmpty();
+                boolean safe = !isKingInCheck(color);
+                from.addPiece(piece);
+                if (captured != null) {
+                    to.addPiece(captured);
+                }else {
+                    to.setEmpty();
+                }
+                if (safe) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
