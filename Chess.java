@@ -10,6 +10,7 @@ public class Chess{
         
         Scanner in = new Scanner(System.in);
         Board board = new Board();
+        System.out.println(board);
         Stack<Board> boardPositions = new Stack<>();
         boardPositions.add(new Board(board));
         Stack<Board> storedMoves = new Stack<>();
