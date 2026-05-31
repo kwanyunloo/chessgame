@@ -1,4 +1,5 @@
 // used AI to fix small errors
+
 import java.util.ArrayList;
 
 public class Board {
@@ -47,10 +48,7 @@ public class Board {
                 if (piece instanceof Pawn || piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
                 }
-                // Handles promotion to queen
-                if (piece instanceof Pawn && (endRow == 0 || endRow == 7)){
-                    board[endRow][endCol].addPiece(new Queen(piece.getColor()));
-                }
+
                 //if the king moved two squares it castled - move the rook too
                 if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
                     if (endCol == 6) {
@@ -75,6 +73,11 @@ public class Board {
                     if (Math.abs(startRow - endRow) == 2) {
                         movedPawn.setJustMovedTwo(true);
                     }
+                }
+
+                //pawn promotion: reached the far rank -> promote to queen
+                if (piece instanceof Pawn && (endRow == 0 || endRow == 7)) {
+                    board[endRow][endCol].addPiece(new Queen(piece.getColor()));
                 }
                 
                 return true;
@@ -289,31 +292,19 @@ public class Board {
 
     //true if color has a move that doesn't leave its own king in check
     public boolean hasAnyLegalMove(boolean color){
-    for (int i = 0; i < 8; i++)
-        for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) {
             Square from = board[i][j];
-            if (!from.hasPiece() || from.getPiece().getColor() != color) {
-                continue;
-            }
+            if (!from.hasPiece() || from.getPiece().getColor() != color) continue;
             Piece piece = from.getPiece();
             for (int[] m : piece.possibleMoves(from, board)) {
-                if (piece instanceof King && Math.abs(m[1] - j) == 2) {
-                    continue; //castling can't be the only escape
-                }
+                if (piece instanceof King && Math.abs(m[1] - j) == 2) continue; //castling can't be the only escape
                 Square to = board[m[0]][m[1]];
                 Piece captured = to.getPiece();   //null if the square is empty
-                to.addPiece(piece);
-                from.setEmpty();
+                to.addPiece(piece); from.setEmpty();
                 boolean safe = !isKingInCheck(color);
                 from.addPiece(piece);
-                if (captured != null) {
-                    to.addPiece(captured);
-                }else {
-                    to.setEmpty();
-                }
-                if (safe) {
-                    return true;
-                }
+                if (captured != null) to.addPiece(captured); else to.setEmpty();
+                if (safe) return true;
             }
         }
         return false;
@@ -384,26 +375,16 @@ public class Board {
                     System.out.print(". ");
                 }
                 else {
-                    //WE NEED TO DIFFERENTIATE BETWEEN WHITE AND BLACK PIECE - maybe uppercase for white, lowercase for black?
+                    //uppercase for white, lowercase for black
                     Piece p = board[row][col].getPiece();
-                    if (p instanceof King){
-                        System.out.print("K ");
-                    }
-                    else if (p instanceof Bishop){
-                        System.out.print("B ");
-                    }
-                    else if (p instanceof Pawn){
-                        System.out.print("P ");
-                    }
-                    else if (p instanceof Queen){
-                        System.out.print("Q ");
-                    }
-                    else if (p instanceof Rook){
-                        System.out.print("R ");
-                    }
-                    else if (p instanceof Knight){
-                        System.out.print("N ");
-                    }
+                    String s = "";
+                    if (p instanceof King) s = "K";
+                    else if (p instanceof Bishop) s = "B";
+                    else if (p instanceof Pawn) s = "P";
+                    else if (p instanceof Queen) s = "Q";
+                    else if (p instanceof Rook) s = "R";
+                    else if (p instanceof Knight) s = "N";
+                    System.out.print((p.getColor() ? s : s.toLowerCase()) + " ");
                 }
                 
             }
