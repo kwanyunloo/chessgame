@@ -8,13 +8,15 @@ public class Board {
     private boolean currentTurn;
     public boolean move(int startRow, int startCol, int endRow, int endCol){
         Piece piece = board[startRow][startCol].getPiece();
-        if (piece == null || piece.getColor() != currentTurn){ // someone trying to move an opposing player's piece
+        if (piece == null || piece.getColor() != currentTurn){ // check if someone trying to move an opposing player's piece
             System.out.println("Invalid Move: This is not your piece");
             return false;
         }
-        ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);
+        
+        ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);  //get all possible moves for selected piece.
+       //check if the desired move is in the legal move list
         for (int[] possibleMove : possibleMoves){
-            if (possibleMove[0] == endRow && possibleMove[1] == endCol){
+            if (possibleMove[0] == endRow && possibleMove[1] == endCol)
                 //castling: king can't be in check or pass through an attacked square
                 if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
                     int midCol = (startCol + endCol) / 2;
