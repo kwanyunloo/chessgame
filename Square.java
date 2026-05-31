@@ -44,6 +44,7 @@ public class Square {
         hasPiece = false;
     }
     
+    //places a piece on this square
     public void addPiece(Piece newPiece){
         hasPiece = true;
         p = newPiece;
