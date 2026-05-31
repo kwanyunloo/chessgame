@@ -1,6 +1,7 @@
 package chess;
-
+// used ai to fix small errors
 import java.util.Scanner;
+import java.util.Stack;
 
 // This acts as the driver class for our program
 public class Chess{
@@ -40,11 +41,11 @@ public class Chess{
                 System.out.println(board);
             }
             String end = in.next();
-            int startRow = start.charAt(0) - 'a';
-            int startCol = start.charAt(0) - '0';
-            int endRow = start.charAt(0) - 'a';
-            int endCol = start.charAt(0) - '0';
-            if (board.move(startingRow, startingCol, endingRow, endingCol)){
+            int startRow = start.charAt(1) - '1';
+            int startCol = start.charAt(0) - 'a';
+            int endRow = end.charAt(1) - '1';
+            int endCol = end.charAt(0) - 'a';
+            if (board.move(startRow, startCol, endRow, endCol)){
                 // asked AI for advice on stack logic
                 storedMoves.clear();
                 board.changeMove(); // changes the turn from white to black or black to white
