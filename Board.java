@@ -14,6 +14,14 @@ public class Board {
         ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);
         for (int[] possibleMove : possibleMoves){
             if (possibleMove[0] == endRow && possibleMove[1] == endCol){
+                //castling: king can't be in check or pass through an attacked square
+                if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
+                    int midCol = (startCol + endCol) / 2;
+                    if (isKingInCheck(currentTurn) || isSquareAttacked(startRow, midCol, currentTurn)) {
+                        System.out.println("Invalid move: cannot castle out of or through check");
+                        return false;
+                    }
+                }
                 //save piece on end square in case of capture
                 Piece capturedPiece = null;
                 if (board[endRow][endCol].hasPiece()) {
@@ -38,6 +46,17 @@ public class Board {
 
                 if (piece instanceof Pawn || piece instanceof Rook || piece instanceof King){
                     piece.setHasMoved(true);
+                }
+
+                //if the king moved two squares it castled - move the rook too
+                if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
+                    if (endCol == 6) {
+                        board[startRow][5].addPiece(board[startRow][7].getPiece());
+                        board[startRow][7].setEmpty();
+                    } else {
+                        board[startRow][3].addPiece(board[startRow][0].getPiece());
+                        board[startRow][0].setEmpty();
+                    }
                 }
 
                 //check for en passant or pawn double move
@@ -238,10 +257,23 @@ public class Board {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new Square(i, j);
                 if (other.board[i][j].hasPiece()) {
-                    board[i][j].addPiece(other.board[i][j].getPiece());
+                    board[i][j].addPiece(copyPiece(other.board[i][j].getPiece()));
                 }
             }
         }
+    }
+
+    private Piece copyPiece(Piece p){
+        Piece n;
+        if (p instanceof Pawn) n = new Pawn(p.getColor());
+        else if (p instanceof Rook) n = new Rook(p.getColor());
+        else if (p instanceof Knight) n = new Knight(p.getColor());
+        else if (p instanceof Bishop) n = new Bishop(p.getColor());
+        else if (p instanceof Queen) n = new Queen(p.getColor());
+        else n = new King(p.getColor());
+        n.setHasMoved(p.hasMoved());
+        if (p instanceof Pawn) ((Pawn) n).setJustMovedTwo(((Pawn) p).justMovedTwo());
+        return n;
     }
 
     public boolean playerTurn(){
@@ -261,6 +293,15 @@ public class Board {
                 // look for squares that have pieces belonging to opponent
                 if (currentSquare.hasPiece() && currentSquare.getPiece().getColor() != defendingColor) {
                     Piece enemyPiece = currentSquare.getPiece();
+
+                    // a pawn attacks only its two forward diagonals, not the squares it moves to
+                    if (enemyPiece instanceof Pawn) {
+                        int dir = enemyPiece.getColor() ? 1 : -1;
+                        if (i + dir == targetRow && (j + 1 == targetCol || j - 1 == targetCol)) {
+                            return true;
+                        }
+                        continue;
+                    }
 
                     // get all the possible moves of that piece
                     ArrayList<int[]> enemyMoves = enemyPiece.possibleMoves(currentSquare, board);
