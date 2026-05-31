@@ -24,7 +24,7 @@ public class Chess{
             String start = in.next();
             while (start.equals("back") || start.equals("forward")){ // goes back or forward a move
                 if (start.equals("back")){
-                    if (boardPositions.isEmpty()){
+                    if (boardPositions.size() <= 1){
                         System.out.println("You can't go back any more");
                     }else{
                         storedMoves.add(boardPositions.pop());
@@ -38,8 +38,8 @@ public class Chess{
                     }
                 }
                 board = new Board(boardPositions.peek());
-                start = in.next();
                 System.out.println(board);
+                start = in.next();
             }
             String end = in.next();
             int startRow = start.charAt(1) - '1';
@@ -56,6 +56,11 @@ public class Chess{
             
             System.out.println(board); // make sure to make a toString method that prints it out correctly (rotate it)
             
+        }
+        if (board.isCheckmate(board.playerTurn())) {
+            System.out.println((board.playerTurn() ? "Black" : "White") + " wins by checkmate!");
+        } else {
+            System.out.println("Stalemate! The game is a draw.");
         }
     }
 }
