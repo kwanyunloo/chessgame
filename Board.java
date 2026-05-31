@@ -48,7 +48,7 @@ public class Board {
                     piece.setHasMoved(true);
                 }
                 // Handles promotion to queen
-                if (piece instanceof Pawn && (endRow == 0 || endRow == 7){
+                if (piece instanceof Pawn && (endRow == 0 || endRow == 7)){
                     board[endRow][endCol].addPiece(new Queen(piece.getColor()));
                 }
                 //if the king moved two squares it castled - move the rook too
