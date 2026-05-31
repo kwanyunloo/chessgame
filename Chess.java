@@ -1,4 +1,4 @@
-package chess;
+
 // used ai to fix small errors
 import java.util.Scanner;
 import java.util.Stack;
