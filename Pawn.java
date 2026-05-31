@@ -1,10 +1,9 @@
 package chess;
-
+// used AI to fix small errors
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    private boolean hasMoved;
     private boolean justMovedTwo;
     
     public Pawn(boolean newColor) {
@@ -63,9 +62,9 @@ public class Pawn extends Piece {
                     Square targetSquare = board[nextRow][c];
                     Square adjSquare = board[row][c];
                     if (adjSquare.hasPiece()){
-                        adjPiece = adjSquare.getPiece();
+                        Piece adjPiece = adjSquare.getPiece();
                         if (!targetSquare.hasPiece() && adjPiece instanceof Pawn && adjPiece.getColor() != this.getColor()) {
-                            if ((Pawn) adjPiece).justMovedTwo()){
+                            if (((Pawn) adjPiece).justMovedTwo()){
                                 moves.add(new int[]{nextRow, c});
                             }
                         }
@@ -73,8 +72,12 @@ public class Pawn extends Piece {
                 }
             }
         }
+        return moves;
     }
 
+    public boolean justMovedTwo(){
+        return justMovedTwo;
+    }
     public void setHasMoved(boolean b) {
         hasMoved = b;
     }
