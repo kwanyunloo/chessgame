@@ -16,7 +16,7 @@ public class Board {
         ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);  //get all possible moves for selected piece.
        //check if the desired move is in the legal move list
         for (int[] possibleMove : possibleMoves){
-            if (possibleMove[0] == endRow && possibleMove[1] == endCol)
+            if (possibleMove[0] == endRow && possibleMove[1] == endCol){
                 //castling: king can't be in check or pass through an attacked square
                 if (piece instanceof King && Math.abs(startCol - endCol) == 2) {
                     int midCol = (startCol + endCol) / 2;
