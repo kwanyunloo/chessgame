@@ -74,7 +74,126 @@ public class Board {
             }
         }
     }
-    
+    //castle method
+    //color=true for white, color=false for black
+    //kingSide =true for kingside castle, kingSide=false for queenside castle
+    public boolean castle(boolean color, boolean kingSide){
+        int row;
+        
+        //white pieces start on row 0 and black pieces on row 7
+        if(color){
+            row=0;
+        } else{
+            row=7;
+        }
+
+        Piece kingPiece = board[row][4].getPiece();
+
+        //make sure king exists
+        if (!(kingPiece instanceof King)) {
+            return false;
+        }
+
+        //king can't have moved previously
+        if (kingPiece.hasMoved()) {
+            return false;
+        }
+
+        //king can't castle while in check
+        if (isKingInCheck(color)) {
+            return false;
+        }
+
+        if (kingSide) {
+        //Kingside castle
+            //King: e -> g
+            //Rook: h -> f
+
+            Piece rookPiece = board[row][7].getPiece();
+
+            //verify rook exists
+            if (!(rookPiece instanceof Rook)) {
+                return false;
+            }
+
+            //rook can't have moved
+            if (rookPiece.hasMoved()) {
+                return false;
+            }
+
+            //squares between rook and king must be empty
+            if(board[row][5].hasPiece() || board[row][6].hasPiece()) {
+                return false;
+            }
+
+            //king can't move through check
+            if (isSquareAttacked(row, 5. color) || isSquareAttacked(row, 6, color)) {
+                return false;
+            }
+
+            //move king
+            board[row][6].addPiece(kingPiece);
+            board[row][4].setEmpty();
+
+            //move rook
+            board[row][5].addPiece(rookPiece);
+            board[row][7].setEmpty();
+            
+            kingPiece.setHasMoved(true);
+            rookPiece.setHasMoved(true);
+
+            changeMove();
+            return true;    
+        }
+
+        else {
+
+            //Queenside castle
+            //King: e -> c
+            //Rook: a -> d
+
+            piece rookPiece = board[row][0].getPiece();
+
+            //verify rook exists
+            if (!(rookPiece instanceof Rook)) {
+                return false;
+            }
+
+            //rook can't have moved
+            if (rookPiece.hasMoved()) {
+                return false;
+            }
+
+            //squares between rook and king must be empty
+
+            if (board[row][1].hasPiece() || board[row][2].hasPiece() board[row][3].hasPiece()) {
+            
+                return false;
+            }
+
+            //king can't move through check
+            if(isSquareAttacked(row, 3, color) || isSquareAttacked(row, 2, color)) {
+                return false;
+            }
+
+            //move king
+            board[row][2].addPiece(kingPiece);
+            board[row][4].setEmpty();
+
+            //move rook
+            board[row][3].addPiece(rookPiece);
+            board[row][0].setEmpty();
+
+            kingPiece.setHasMoved(true);
+            rookPiece.setHasMoved(true);
+
+            changeMove();
+
+            return true;
+            
+        }
+}
+                          
     public Board(){
         currentTurn = true;
          for (int i = 0; i < 8; i++) {
