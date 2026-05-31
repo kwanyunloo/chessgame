@@ -4,6 +4,9 @@
  */
 
 
+/* Represents one square on the chess board.
+ * Each square can either be empty or contain a piece.
+ */
 public class Square {
     
     private boolean hasPiece;
