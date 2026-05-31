@@ -74,6 +74,8 @@ public class Board {
             }
         }
     }
+
+    
     //castle method
     //color=true for white, color=false for black
     //kingSide =true for kingside castle, kingSide=false for queenside castle
