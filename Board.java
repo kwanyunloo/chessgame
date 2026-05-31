@@ -1,15 +1,17 @@
 package chess;
+// used AI to fix small errors
+import java.util.ArrayList;
 
 public class Board {
     
     private Square[][] board = new Square[8][8];
     private boolean currentTurn;
     public boolean move(int startRow, int startCol, int endRow, int endCol){
-        if (piece[startRow][startCol].getColor() != currentTurn){ // someone trying to move an opposing player's piece
+        Piece piece = board[startRow][startCol].getPiece();
+        if (piece == null || piece.getColor() != currentTurn){ // someone trying to move an opposing player's piece
             System.out.println("Invalid Move: This is not your piece");
             return false;
         }
-        Piece piece = board[startRow][startCol];
         ArrayList<int[]> possibleMoves = piece.possibleMoves(board[startRow][startCol], board);
         for (int[] possibleMove : possibleMoves){
             if (possibleMove[0] == endRow && possibleMove[1] == endCol){
@@ -23,7 +25,7 @@ public class Board {
                 board[startRow][startCol].setEmpty();
 
                 if (isKingInCheck(currentTurn)){ //illegal move - undo move
-                    board[startRow][startCol].addPiece(pieceToMove);
+                    board[startRow][startCol].addPiece(piece);
                     
                     if (capturedPiece != null) {
                         board[endRow][endCol].addPiece(capturedPiece); 
@@ -40,8 +42,8 @@ public class Board {
                 }
 
                 //check for en passant or pawn double move
-                if (pieceToMove instanceof Pawn) {
-                    Pawn movedPawn = (Pawn) pieceToMove;
+                if (piece instanceof Pawn) {
+                    Pawn movedPawn = (Pawn) piece;
                     
                     //check for en passant - pawn moves diagonal but capture square is empty
                     if (startCol != endCol && capturedPiece == null) {
@@ -129,7 +131,7 @@ public class Board {
             }
 
             //king can't move through check
-            if (isSquareAttacked(row, 5. color) || isSquareAttacked(row, 6, color)) {
+            if (isSquareAttacked(row, 5, color) || isSquareAttacked(row, 6, color)) {
                 return false;
             }
 
@@ -154,7 +156,7 @@ public class Board {
             //King: e -> c
             //Rook: a -> d
 
-            piece rookPiece = board[row][0].getPiece();
+            Piece rookPiece = board[row][0].getPiece();
 
             //verify rook exists
             if (!(rookPiece instanceof Rook)) {
@@ -168,7 +170,7 @@ public class Board {
 
             //squares between rook and king must be empty
 
-            if (board[row][1].hasPiece() || board[row][2].hasPiece() board[row][3].hasPiece()) {
+            if (board[row][1].hasPiece() || board[row][2].hasPiece() || board[row][3].hasPiece()) {
             
                 return false;
             }
@@ -230,6 +232,26 @@ public class Board {
             board[6][i].addPiece(new Pawn(false));
         }
     }
+
+    public Board(Board other){
+        this.currentTurn = other.currentTurn;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new Square(i, j);
+                if (other.board[i][j].hasPiece()) {
+                    board[i][j].addPiece(other.board[i][j].getPiece());
+                }
+            }
+        }
+    }
+
+    public boolean playerTurn(){
+        return currentTurn;
+    }
+
+    public boolean isGameOver(){
+        return false;
+    }
     
     public boolean isSquareAttacked(int targetRow, int targetCol, boolean defendingColor) {
         //scan the entire board
@@ -281,30 +303,30 @@ public class Board {
 
     
     public String toString(){
-        for (int row = 7; row >= 0; i--){ // print in opposite direction because board is 0 based from the bottom left corner
+        for (int row = 7; row >= 0; row--){ // print in opposite direction because board is 0 based from the bottom left corner
             for (int col = 0; col < 8; col++){
                 if (!board[row][col].hasPiece()){
-                    System.out.println(". ");
+                    System.out.print(". ");
                 }
                 else {
                     //WE NEED TO DIFFERENTIATE BETWEEN WHITE AND BLACK PIECE - maybe uppercase for white, lowercase for black?
                     Piece p = board[row][col].getPiece();
-                    if (board[row][col] instanceOf King){
+                    if (p instanceof King){
                         System.out.print("K ");
                     }
-                    else if (board[row][col] instanceOf Bishop){
+                    else if (p instanceof Bishop){
                         System.out.print("B ");
                     }
-                    else if (board[row][col] instanceOf Pawn){
+                    else if (p instanceof Pawn){
                         System.out.print("P ");
                     }
-                    else if (board[row][col] instanceOf Queen){
+                    else if (p instanceof Queen){
                         System.out.print("Q ");
                     }
-                    else if (board[row][col] instanceOf Rook){
+                    else if (p instanceof Rook){
                         System.out.print("R ");
                     }
-                    else if (board[row][col] instanceOf Knight){
+                    else if (p instanceof Knight){
                         System.out.print("N ");
                     }
                 }
@@ -312,5 +334,6 @@ public class Board {
             }
             System.out.println();
         }
+        return "";
     }
 }
