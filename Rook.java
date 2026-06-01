@@ -24,22 +24,20 @@ public class Rook extends Piece {
                 int newCol = col + d[1];
                 //the purpose of the while statement is to keep moving until the edge or you are blocked
                 while(newRow >= 0 && newRow < 8 && newCol >= 0 && newCol< 8){
-                    Square next=board[newRow][newCol]; //gets square on the chessboard at a specific position and stores it 
+                    Square next=board[newRow][newCol]; 
                     if(!next.hasPiece()){
-                        moves.add(new int[]{newRow,newCol});
+                        moves.add(new int[]{newRow,newCol}); //if the square is empty, add it as a possible move and continue
                     }
                     else{
                         // if enemy piece, you can capture
-                        
-                        if (next.getPiece().getColor() != this.getColor()){
+                        if (next.getPiece().getColor() != this.getColor()){ 
+                            //used ai to figure out how to store the move
                             moves.add(new int[]{newRow, newCol}); // record coordinate as legal move for this piece. 
-                            //I used ai to store it because i did not know how to store the captures as possible moves. 
-                            //As I did not know if they should be in the same ArrayList or not.
                         }
                         //stop scanning in this direction
                         break;
                 
-            }    //used ai for the below two lines because I did not know how to actually move the rook to other positions
+            }    //used ai to figure out how to continue moving the rook
                     newRow += d[0];
                     newCol += d[1];
       }
