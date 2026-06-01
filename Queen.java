@@ -22,20 +22,21 @@ public class Queen extends Piece {
         for (int[] d : directions) {
             int newRow = row + d[0];
             int newCol = col + d[1];
-
+            //continues until hitting edge of the board
             while (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
                 Square next = board[newRow][newCol];
                 
-                if (!next.hasPiece()) {
-                    moves.add(new int[]{newRow, newCol});
+                if (!next.hasPiece()) { 
+                    moves.add(new int[]{newRow, newCol}); //move is possible if the square is empty
                 } else {
-                    
+                    //if enemy piece, add as a possible capture move
                     if (next.getPiece().getColor() != this.getColor()) {
                         moves.add(new int[]{newRow, newCol}); 
                     } 
+                    //stop moving in this direction once any piece is hit
                     break; 
                 }
-      
+                //move to next square in this direction
                 newRow += d[0];
                 newCol += d[1];
             }
