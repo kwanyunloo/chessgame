@@ -77,7 +77,7 @@ public class Pawn extends Piece {
         return justMovedTwo;
     }
 
-    public boolean setJustMovedTwo(boolean b){
+    public void setJustMovedTwo(boolean b){
         justMovedTwo = b;
     }
 }
