@@ -1,7 +1,6 @@
 // used ai to fix small errors
 
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 // This acts as the driver class for our program
 public class Chess{
