@@ -14,10 +14,6 @@ public abstract class Piece {
         return this.color;
     }
 
-    public boolean hasMoved() {
-        return hasMoved;
-    }
-
     public void setHasMoved(boolean b) {
         hasMoved = b;
     }
