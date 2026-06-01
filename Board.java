@@ -125,7 +125,7 @@ public class Board {
         }
 
         //king can't have moved previously
-        if (kingPiece.hasMoved()) {
+        if (kingPiece.getHasMoved()) {
             return false;
         }
 
@@ -147,7 +147,7 @@ public class Board {
             }
 
             //rook can't have moved
-            if (rookPiece.hasMoved()) {
+            if (rookPiece.getHasMoved()) {
                 return false;
             }
 
@@ -190,7 +190,7 @@ public class Board {
             }
 
             //rook can't have moved
-            if (rookPiece.hasMoved()) {
+            if (rookPiece.getHasMoved()) {
                 return false;
             }
 
@@ -279,8 +279,8 @@ public class Board {
         else if (p instanceof Bishop) n = new Bishop(p.getColor());
         else if (p instanceof Queen) n = new Queen(p.getColor());
         else n = new King(p.getColor());
-        n.setHasMoved(p.hasMoved());
-        if (p instanceof Pawn) ((Pawn) n).setJustMovedTwo(((Pawn) p).justMovedTwo());
+        n.setHasMoved(p.getHasMoved());
+        if (p instanceof Pawn) ((Pawn) n).setJustMovedTwo(((Pawn) p).getJustMovedTwo());
         return n;
     }
 
