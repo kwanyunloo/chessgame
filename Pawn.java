@@ -1,5 +1,5 @@
 // used AI to fix small errors
-import java.util.ArrayList;
+import java.util.*;
 
 public class Pawn extends Piece {
     private boolean justMovedTwo;
