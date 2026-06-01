@@ -292,23 +292,50 @@ public class Board {
     public boolean isCheckmate(boolean color){ return isKingInCheck(color) && !hasAnyLegalMove(color); }
     public boolean isStalemate(boolean color){ return !isKingInCheck(color) && !hasAnyLegalMove(color); }
 
-    //true if color has a move that doesn't leave its own king in check
-    public boolean hasAnyLegalMove(boolean color){
-        for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) {
-            Square from = board[i][j];
-            if (!from.hasPiece() || from.getPiece().getColor() != color) continue;
-            Piece piece = from.getPiece();
-            for (int[] m : piece.possibleMoves(from, board)) {
-                if (piece instanceof King && Math.abs(m[1] - j) == 2) continue; //castling can't be the only escape
-                Square to = board[m[0]][m[1]];
-                Piece captured = to.getPiece();   //null if the square is empty
-                to.addPiece(piece); from.setEmpty();
-                boolean safe = !isKingInCheck(color);
-                from.addPiece(piece);
-                if (captured != null) to.addPiece(captured); else to.setEmpty();
-                if (safe) return true;
+    public boolean hasAnyLegalMove(boolean color) {
+        for (int i = 0; i < 8; i++) { //loops through every square of the board
+            for (int j = 0; j < 8; j++) {
+                
+                // skip the square if it is empty or if the piece belongs to the opponent
+                if (!board[i][j].hasPiece() || board[i][j].getPiece().getColor() != color) {
+                    continue;
+                }
+                
+                Piece piece = board[i][j].getPiece(); //take a friendly piece
+                
+                for (int[] m : piece.possibleMoves(board[i][j], board)) { //loop through every possible move of that piece
+                    
+                    // skip castling because it cannot be used to escape a check
+                    if (piece instanceof King && Math.abs(m[1] - j) == 2) {
+                        continue;
+                    }
+
+                    //save whatever piece is currently on the destination square
+                    Piece captured = board[m[0]][m[1]].getPiece(); 
+                    
+                    //simulate the move
+                    board[m[0]][m[1]].addPiece(piece); 
+                    board[i][j].setEmpty();
+
+                    //check if the king is safe after this simulated move is made
+                    boolean safe = !isKingInCheck(color);
+
+                    //revert the position
+                    board[i][j].addPiece(piece);
+                    if (captured != null) {
+                        board[m[0]][m[1]].addPiece(captured); 
+                    } else {
+                        board[m[0]][m[1]].setEmpty();
+                    }
+
+                    if (safe) {
+                        return true;
+                    }
+                }
             }
         }
+        
+        //all moves were checked and none brought king out of danger
         return false;
     }
     
