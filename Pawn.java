@@ -62,7 +62,7 @@ public class Pawn extends Piece {
                     if (adjSquare.hasPiece()){
                         Piece adjPiece = adjSquare.getPiece();
                         if (!targetSquare.hasPiece() && adjPiece instanceof Pawn && adjPiece.getColor() != this.getColor()) {
-                            if (((Pawn) adjPiece).justMovedTwo()){
+                            if (((Pawn) adjPiece).getJustMovedTwo()){
                                 moves.add(new int[]{nextRow, c});
                             }
                         }
