@@ -2,11 +2,7 @@
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
-
     private boolean justMovedTwo;
-
-    //used to check if pawn can move two spaces
-    protected boolean hasMoved = false;
     
     public Pawn(boolean newColor) {
         super(newColor);
@@ -79,11 +75,5 @@ public class Pawn extends Piece {
 
     public boolean justMovedTwo(){
         return justMovedTwo;
-    }
-    public void setHasMoved(boolean b) {
-        hasMoved = b;
-    }
-    public void setJustMovedTwo(boolean b){
-        justMovedTwo = b;
     }
 }
