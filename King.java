@@ -15,7 +15,7 @@ public class King extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         int row = current.getRow();
 
-        int[][] directions = {
+        int[][] directions = { //8 possible directions for the king to move
             {-1, -1},
             {-1, 0},
             {-1, 1},
@@ -26,21 +26,16 @@ public class King extends Piece {
             {1, 1}
         };
 
-        for (int[] d : directions) {
-
+        for (int[] d : directions) { //checks if each direction is valid
             int newX = current.getRow() + d[0];
             int newY = current.getCol() + d[1];
 
-            if (newX >= 0 && newX < 8 &&
-                newY >= 0 && newY < 8) {
-
+            if (newX >= 0 && newX < 8 && newY >= 0 && newY < 8) {
+                //valid move if the target square is either empty or has enemy piece (capture)
                 if (board[newX][newY].getPiece() == null) {
-
                     moves.add(new int[]{newX, newY});
                 }
-
                 else if (board[newX][newY].getPiece().getColor() != this.getColor()) {
-
                     moves.add(new int[]{newX, newY});
                 }
             }
