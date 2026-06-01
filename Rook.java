@@ -1,4 +1,3 @@
-
 // used ai to fix small errors
 import java.util.ArrayList;
 // I used ai in this code for formatting to format it because all the formatting was off.
@@ -11,7 +10,7 @@ public class Rook extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         int row = current.getRow();
         int col = current.getCol();
-  //4 directions in which a rook can move: up, down, left, and right
+        //4 directions in which a rook can move: up, down, left, and right
         int[][] directions={
             {-1,0},   //up
             {1,0},    //down
@@ -19,9 +18,9 @@ public class Rook extends Piece {
             {0,1},    //right
         };
         for(int [] d: directions){
-                 int newRow = row + d[0];
+                int newRow = row + d[0];
                 int newCol = col + d[1];
-  //the purpose of the while statement is to keep moving until the edge or you are blocked
+                //the purpose of the while statement is to keep moving until the edge or you are blocked
                 while(newRow >= 0 && newRow < 8 && newCol >= 0 && newCol< 8){
                     Square next=board[newRow][newCol]; //gets square on the chessboard at a specific position and stores it 
                     if(!next.hasPiece()){
