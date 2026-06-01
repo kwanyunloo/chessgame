@@ -5,6 +5,9 @@ public abstract class Piece {
     // True for White, False for Black
     protected boolean color;
 
+    //used for castling and pawn moves
+    protected boolean hasMoved;
+
     //returns the color of the piece
     public Piece(boolean newColor) {
         color = newColor;
