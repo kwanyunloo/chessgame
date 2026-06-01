@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 // used AI to fix small errors
 public class Bishop extends Piece {
@@ -18,21 +17,20 @@ public class Bishop extends Piece {
         };
 
         for (int[] d : directions) {
-
+            
             int newRow = current.getRow() + d[0];
             int newCol = current.getCol() + d[1];
 
             while (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
                 Square next = board[newRow][newCol];
-                
                 if (!next.hasPiece()) {
                     moves.add(new int[]{newRow, newCol});
                 } else {
-                    
+                    //checks for captures - if the square has a piece of the opposite color
                     if (next.getPiece().getColor() != this.getColor()) {
                         moves.add(new int[]{newRow, newCol}); 
                     }
-                    break; 
+                    break; //if there is a piece, the bishop is blocked -- do not continue in this direction
                 }
       
                 newRow += d[0];
