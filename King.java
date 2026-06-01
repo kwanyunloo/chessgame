@@ -3,9 +3,6 @@
 import java.util.ArrayList;
 
 public class King extends Piece {
-    //used to check if castling is allowed
-    protected boolean hasMoved = false;
-    
     public King(boolean newColor) {
         super(newColor);
     }
@@ -67,13 +64,4 @@ public class King extends Piece {
 
         return moves;
     }
-
-    public boolean getHasMoved() {
-        return hasMoved;
-    }
-
-    public void setHasMoved(boolean b) {
-        hasMoved = b;
-    }
-    
 }
