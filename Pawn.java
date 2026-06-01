@@ -73,7 +73,11 @@ public class Pawn extends Piece {
         return moves;
     }
 
-    public boolean justMovedTwo(){
+    public boolean getJustMovedTwo(){
         return justMovedTwo;
+    }
+
+    public boolean setJustMovedTwo(boolean b){
+        justMovedTwo = b;
     }
 }
