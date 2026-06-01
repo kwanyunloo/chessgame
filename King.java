@@ -3,6 +3,8 @@
 import java.util.ArrayList;
 
 public class King extends Piece {
+    //used to check if castling is allowed
+    protected boolean hasMoved = false;
     
     public King(boolean newColor) {
         super(newColor);
