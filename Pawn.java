@@ -1,10 +1,12 @@
-
 // used AI to fix small errors
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
     private boolean justMovedTwo;
+
+    //used to check if pawn can move two spaces
+    protected boolean hasMoved = false;
     
     public Pawn(boolean newColor) {
         super(newColor);
