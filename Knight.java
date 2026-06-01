@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 public class Knight extends Piece {
@@ -22,9 +20,10 @@ public class Knight extends Piece {
             int newRow = current.getRow() + m[0];
             int newCol = current.getCol() + m[1];
 
-            if (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
+            if (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) { //ensures move is within the board
                 Square next = board[newRow][newCol];
-                
+
+                //valid move if it does not have a piece of the same color
                 if (!next.hasPiece() || next.getPiece().getColor() != this.getColor()) {
                     moves.add(new int[]{newRow, newCol});
                 }
