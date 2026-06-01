@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 // I used ai in this code for formatting to format it because all the formatting was off.
 public class Rook extends Piece {
+    //used to check if castling is allowed
+    protected boolean hasMoved = false;
     
     public Rook(boolean newColor) {
         super(newColor);
