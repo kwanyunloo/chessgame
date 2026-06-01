@@ -77,9 +77,22 @@ public class Board {
                     }
                 }
 
-                //pawn promotion: reached the far rank -> promote to queen
+                //pawn promotion: reached the far rank -> promote to piece
+
                 if (piece instanceof Pawn && (endRow == 0 || endRow == 7)) {
-                    board[endRow][endCol].addPiece(new Queen(piece.getColor()));
+                    System.out.println("Which piece would you like to promote to?");
+                    String next = in.next();
+                    if (next.equals("knight")){
+                        board[endRow][endCol].addPiece(new Knight(piece.getColor()));
+                    }else if (next.equals("bishop")){
+                        board[endRow][endCol].addPiece(new Bishop(piece.getColor()));
+                    }else if (next.equals("rook")){
+                        board[endRow][endCol].addPiece(new Rook(piece.getColor()));
+                    }else if (next.equals("queen")){
+                        board[endRow][endCol].addPiece(new Queen(piece.getColor()));
+                    }
+                        
+                    
                 }
                 
                 return true;
