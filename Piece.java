@@ -4,8 +4,6 @@ import java.util.ArrayList;
 public abstract class Piece {
     // True for White, False for Black
     protected boolean color;
-    //used for castling, pawn moves, etc.
-    protected boolean hasMoved = false;
 
     //returns the color of the piece
     public Piece(boolean newColor) {
