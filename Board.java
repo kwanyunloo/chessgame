@@ -6,7 +6,7 @@ public class Board {
     
     private Square[][] board = new Square[8][8];
     private boolean currentTurn;
-    public boolean move(int startRow, int startCol, int endRow, int endCol){
+    public boolean move(int startRow, int startCol, int endRow, int endCol, Scanner in){
         Piece piece = board[startRow][startCol].getPiece();
         if (piece == null || piece.getColor() != currentTurn){ // check if someone trying to move an opposing player's piece
             System.out.println("Invalid Move: This is not your piece");
