@@ -46,7 +46,7 @@ public class Chess{
             int startCol = start.charAt(0) - 'a';
             int endRow = end.charAt(1) - '1';
             int endCol = end.charAt(0) - 'a';
-            if (board.move(startRow, startCol, endRow, endCol)){
+            if (board.move(startRow, startCol, endRow, endCol, in)){
                 // asked AI for advice on stack logic
                 storedMoves.clear();
                 board.changeMove(); // changes the turn from white to black or black to white
